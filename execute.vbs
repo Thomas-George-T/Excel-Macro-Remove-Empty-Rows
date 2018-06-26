@@ -1,4 +1,4 @@
-Dim Arg, FilePath, ct
+Dim Arg, FilePath
 Set Arg = WScript.Arguments
 
 'Usage Parameters
@@ -22,7 +22,6 @@ Set xlwb = xlApp.workbooks.Open(FilePath)
 On Error Resume Next
 'Taking only the first sheet
 xlwb.Sheets(1).Columns("a:a").SpecialCells(xlCellTypeBlanks).EntireRow.Delete
-ct = ct + 1
 On Error GoTo 0
 
 'Save and Close the Excel document and the Application
