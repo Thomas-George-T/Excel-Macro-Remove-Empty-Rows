@@ -16,14 +16,20 @@ Const xlCellTypeBlanks = 4
 
 Dim xlApp
 Dim xlwb
+Dim countSheet
 
 Set xlApp = CreateObject("Excel.Application")
 Set xlwb = xlApp.workbooks.Open(FilePath)
+'Find the number of sheets
+countSheet = xlwb.Sheets.Count
+
+'Run a loop to the last sheet 
 On Error Resume Next
-'Taking only the first sheet
-xlwb.Sheets(1).Columns("a:a").SpecialCells(xlCellTypeBlanks).EntireRow.Delete
+For i = 1 to countSheet
+xlwb.Sheets(i).Columns("a:a").SpecialCells(xlCellTypeBlanks).EntireRow.Delete
 On Error GoTo 0
 
+Next
 'Save and Close the Excel document and the Application
 xlwb.Save
 xlwb.Close
